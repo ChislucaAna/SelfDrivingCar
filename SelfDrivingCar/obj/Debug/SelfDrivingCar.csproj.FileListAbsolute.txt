@@ -1,0 +1,10 @@
+C:\Users\anach\Desktop\SelfDrivingCar\SelfDrivingCar\bin\Debug\SelfDrivingCar.exe.config
+C:\Users\anach\Desktop\SelfDrivingCar\SelfDrivingCar\bin\Debug\SelfDrivingCar.exe
+C:\Users\anach\Desktop\SelfDrivingCar\SelfDrivingCar\bin\Debug\SelfDrivingCar.pdb
+C:\Users\anach\Desktop\SelfDrivingCar\SelfDrivingCar\obj\Debug\SelfDrivingCar.csproj.AssemblyReference.cache
+C:\Users\anach\Desktop\SelfDrivingCar\SelfDrivingCar\obj\Debug\SelfDrivingCar.Form1.resources
+C:\Users\anach\Desktop\SelfDrivingCar\SelfDrivingCar\obj\Debug\SelfDrivingCar.Properties.Resources.resources
+C:\Users\anach\Desktop\SelfDrivingCar\SelfDrivingCar\obj\Debug\SelfDrivingCar.csproj.GenerateResource.cache
+C:\Users\anach\Desktop\SelfDrivingCar\SelfDrivingCar\obj\Debug\SelfDrivingCar.csproj.CoreCompileInputs.cache
+C:\Users\anach\Desktop\SelfDrivingCar\SelfDrivingCar\obj\Debug\SelfDrivingCar.exe
+C:\Users\anach\Desktop\SelfDrivingCar\SelfDrivingCar\obj\Debug\SelfDrivingCar.pdb
