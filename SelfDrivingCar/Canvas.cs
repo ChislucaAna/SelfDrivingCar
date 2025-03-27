@@ -28,7 +28,14 @@ namespace SelfDrivingCar
 
         public void DrawCar(Graphics g, Car car)
         {
-            g.FillRectangle(new SolidBrush(Color.Red), new Rectangle(car.x,car.y,Car.width,Car.height));
+            //Init translation center
+            Rectangle rect = new Rectangle(car.x, car.y, Car.width, Car.height);
+            g.TranslateTransform(rect.X+rect.Width/2, rect.Y+rect.Height/2) ;
+            // Rotate the graphics by angle degrees
+            g.RotateTransform((float)(car.angle * 180 / Math.PI));
+            g.FillRectangle(new SolidBrush(Color.Red), -rect.Width / 2, -rect.Height / 2, rect.Width, rect.Height);
+            //Reset transform to prevent rotation in other drawn elements
+            g.ResetTransform();
         }
     }
 }

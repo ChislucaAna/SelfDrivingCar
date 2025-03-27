@@ -21,6 +21,7 @@ namespace SelfDrivingCar
 
         Canvas canvas;
         Car myCar;
+        private HashSet<Keys> pressedKeys = new HashSet<Keys>(); //we want out car to rotate when front and left are pressed at the same time, for ex
 
         private void Form1_Load(object sender, EventArgs e)
         {  
@@ -35,28 +36,49 @@ namespace SelfDrivingCar
             canvas.DrawCar(e.Graphics,myCar);
         }
 
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            pressedKeys.Remove(e.KeyCode);
+        }
+
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            switch (e.KeyCode)
-            {
-                case Keys.W:
-                    myCar.direction = "front";
-                    break;
-                case Keys.S:
-                    myCar.direction = "reverse";
-                    break;
-                case Keys.A:
-                    myCar.direction = "left";
-                    break;
-                case Keys.D:
-                    myCar.direction = "right";
-                    break;
-            }
-            myCar.HandleKeyPress();
+            pressedKeys.Add(e.KeyCode);
         }
 
         private void animate_Tick(object sender, EventArgs e)
         {
+            Console.WriteLine(pressedKeys.Count);
+            bool up = pressedKeys.Contains(Keys.W);
+            bool left = pressedKeys.Contains(Keys.A);
+            bool right = pressedKeys.Contains(Keys.D);
+            bool down = pressedKeys.Contains(Keys.S);
+            if (up)
+            {
+                Console.WriteLine("up");
+                myCar.speed += Car.acceleration;
+                if (myCar.speed > Car.MaxSpeed)
+                    myCar.speed = Car.MaxSpeed;
+            }
+            if (down)
+            {
+                Console.WriteLine("down");
+                myCar.speed -= Car.acceleration;
+                if (myCar.speed < -Car.MaxSpeed / 2)
+                    myCar.speed = -Car.MaxSpeed / 2;
+            }
+            if (left)
+            {
+                Console.WriteLine("left");
+                if (myCar.speed != 0) //we can't rotate a car in place
+                    myCar.angle -= (float)0.03;
+            }
+            if (right)
+            {
+                Console.WriteLine("right");
+                if (myCar.speed != 0) //we can't rotate a car in place
+                    myCar.angle += (float)0.03;
+            }
             myCar.EvaluateDirection();
             Console.WriteLine("Requesting animation...");
             Refresh();

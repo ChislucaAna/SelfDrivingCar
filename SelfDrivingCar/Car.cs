@@ -10,46 +10,29 @@ namespace SelfDrivingCar
 {
     public class Car
     {
-
+        //upper-left-corner coords(where we draw the rectangle from)
         public int x;
         public int y;
+
+        //center of the car(where we rotate from)
+        public int centerx;
+        public int centery;
+
         public const int width=25;
         public const int height=50;
         public const int MaxSpeed= 50;
-        public string direction;
-
+        public const int acceleration = 5;//the value by which the speed increases or decreases when a key is presssed
+        public const int friction = 2;
+        
         public int speed=0; //by default the car is not moving
-        public int acceleration=3;//the value by which the speed increases or decreases when a key is presssed
-        public int friction = 2;
-
+        public float angle=0; //for car rotation
 
         public Car(int x, int y)
         {
             this.x = x;
             this.y = y;
-        }
-
-        public void HandleKeyPress()
-        {
-            switch (direction)
-            {
-                case "front":
-                    speed += acceleration;
-                    if (speed > MaxSpeed)
-                        speed = MaxSpeed;
-                    break;
-                case "reverse":
-                    speed -= acceleration;
-                    if (speed < -MaxSpeed / 2)
-                        speed = -MaxSpeed / 2;
-                    break;
-                case "left":
-                    x--;
-                    break;
-                case "right":
-                    x++;
-                    break;
-            }
+            centerx = x + width / 2;
+            centery = y + height / 2;
         }
 
         public void EvaluateDirection()
@@ -59,8 +42,10 @@ namespace SelfDrivingCar
                 speed -= friction;
             if (speed < 0)
                 speed += friction;
-
-            this.y-=this.speed;
+            if(Math.Abs(speed)<friction)
+                speed = 0;
+            x -= Convert.ToInt32(Math.Sin(-angle)*speed);
+            y-= Convert.ToInt32(Math.Cos(-angle)*speed);
         }
     }
 }
